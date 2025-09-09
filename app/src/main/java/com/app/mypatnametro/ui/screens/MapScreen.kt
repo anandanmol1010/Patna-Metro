@@ -30,7 +30,9 @@ fun MapScreen(modifier: Modifier = Modifier) {
             .background(MaterialTheme.colorScheme.background)
     ) {
         // Map image with gesture handling
-        Box(
+        Image(
+            painter = painterResource(id = com.app.mypatnametro.R.drawable.map),
+            contentDescription = "Patna Metro Map",
             modifier = Modifier
                 .fillMaxSize()
                 .pointerInput(Unit) {
@@ -46,95 +48,15 @@ fun MapScreen(modifier: Modifier = Modifier) {
                             )
                         }
                     )
-                },
-            contentAlignment = Alignment.Center
-        ) {
-            // Metro map placeholder
-            Card(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(20.dp)
-                    .graphicsLayer(
-                        scaleX = scale,
-                        scaleY = scale,
-                        translationX = offset.x,
-                        translationY = offset.y
-                    ),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                )
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    // Placeholder for metro map
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "🗺️",
-                            style = MaterialTheme.typography.displayLarge
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(
-                            text = "Patna Metro Map",
-                            style = MaterialTheme.typography.headlineMedium,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "Pinch to zoom • Drag to pan",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        
-                        // Metro lines representation
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(16.dp)
-                                        .background(
-                                            MaterialTheme.colorScheme.error,
-                                            androidx.compose.foundation.shape.CircleShape
-                                        )
-                                )
-                                Text(
-                                    text = "Red Line (East-West)",
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
-                            }
-                            
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(16.dp)
-                                        .background(
-                                            MaterialTheme.colorScheme.primary,
-                                            androidx.compose.foundation.shape.CircleShape
-                                        )
-                                )
-                                Text(
-                                    text = "Blue Line (North-South)",
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
-                            }
-                        }
-                    }
                 }
-            }
-        }
+                .graphicsLayer(
+                    scaleX = scale,
+                    scaleY = scale,
+                    translationX = offset.x,
+                    translationY = offset.y
+                ),
+            contentScale = ContentScale.Fit
+        )
         
         // Reset button (floating action button)
         FloatingActionButton(

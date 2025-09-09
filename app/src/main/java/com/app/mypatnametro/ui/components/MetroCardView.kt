@@ -102,14 +102,14 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                             Text(
                                 text = "वन | एक दिल्ली, एक सवारी",
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = Color.White.copy(alpha = 0.85f),
+                                color = Color.White.copy(alpha = 0.9f),
                                 textAlign = TextAlign.End
                             )
                             Text(
                                 text = "DELHI METRO",
                                 style = MaterialTheme.typography.bodySmall,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White.copy(alpha = 0.9f),
+                                color = Color.White.copy(alpha = 0.95f),
                                 textAlign = TextAlign.End
                             )
                         }

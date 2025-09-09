@@ -125,9 +125,10 @@ fun AboutUsScreen(modifier: Modifier = Modifier) {
                 
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
+                    userScrollEnabled = false,
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.height(400.dp)
+                    modifier = Modifier.height(460.dp)
                 ) {
                     items(teamMembers) { member ->
                         TeamMemberCard(member)
