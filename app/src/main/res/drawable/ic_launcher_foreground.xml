@@ -1,0 +1,58 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Blue Background matching -->
+    <path
+        android:fillColor="#4285F4"
+        android:pathData="M0,0h108v108H0z"/>
+    
+    <!-- Outer Circle (white) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFF"/>
+    
+    <!-- Metro Train Body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,42h44c4,0 7,3 7,7v12c0,4 -3,7 -7,7H32c-4,0 -7,-3 -7,-7V49C25,45 28,42 32,42z"/>
+    
+    <!-- Train Windows -->
+    <path
+        android:fillColor="#4285F4"
+        android:pathData="M36,50h10v8H36V50z"/>
+    <path
+        android:fillColor="#4285F4"
+        android:pathData="M62,50h10v8H62V50z"/>
+    
+    <!-- Train Base/Track -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,68h48v4H30V68z"/>
+    
+    <!-- Train Wheels -->
+    <path
+        android:fillColor="#4285F4"
+        android:pathData="M38,72m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
+    <path
+        android:fillColor="#4285F4"
+        android:pathData="M70,72m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
+    
+    <!-- Curved Track Lines -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M20,75 Q54,85 88,75"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M20,33 Q54,23 88,33"
+        android:strokeLineCap="round"/>
+</vector>
