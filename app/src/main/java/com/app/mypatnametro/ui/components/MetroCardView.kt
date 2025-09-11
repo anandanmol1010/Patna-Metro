@@ -95,7 +95,7 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                         ) {
                             Text(
                                 text = "ONE DELHI. ONE RIDE.",
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleLarge,
                                 color = Color.White,
                                 textAlign = TextAlign.End
                             )
@@ -127,7 +127,7 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                         ) {
                             Text(
                                 text = "CARD NO.",
-                                style = MaterialTheme.typography.labelSmall,
+                                style = MaterialTheme.typography.labelLarge,
                                 color = Color.White.copy(alpha = 0.7f)
                             )
                             
@@ -153,9 +153,10 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                                     modifier = Modifier
                                         .size(32.dp)
                                         .background(
-                                            Color.White.copy(alpha = 0.2f),
+                                            Color.White.copy(alpha = 0.4f),
                                             CircleShape
                                         )
+                                        .padding(4.dp)
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.ContentCopy,
@@ -174,7 +175,7 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                         ) {
                             Text(
                                 text = "ISSUED",
-                                style = MaterialTheme.typography.labelSmall,
+                                style = MaterialTheme.typography.labelLarge,
                                 color = Color.White.copy(alpha = 0.7f)
                             )
                             Text(

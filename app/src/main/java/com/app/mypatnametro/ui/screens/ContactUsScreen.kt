@@ -16,6 +16,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.background
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 
 
 @Composable
@@ -35,6 +39,18 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
+
+        Text(
+            modifier = Modifier.fillMaxWidth()
+                .padding(top = 20.dp),
+            text = "Contact Us",
+            color = Color.Black,
+            style = MaterialTheme.typography.headlineLarge.copy(
+                textDecoration = TextDecoration.Underline
+            ),
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
         // Form Section
         Card(
             colors = CardDefaults.cardColors(
@@ -51,43 +67,48 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Full Name") },
+                    label = { Text("Full Name", color = Color.Gray) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = MaterialTheme.colorScheme.primary,
                         focusedLabelColor = MaterialTheme.colorScheme.primary
-                    )
+                    ),
+                    shape = RoundedCornerShape(12.dp)
                 )
-                
+
                 // Email Field
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
-                    label = { Text("Email Address") },
+                    label = { Text("Email Address", color = Color.Gray) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = MaterialTheme.colorScheme.primary,
                         focusedLabelColor = MaterialTheme.colorScheme.primary
-                    )
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+
                 )
-                
+
                 // Subject Field
                 OutlinedTextField(
                     value = subject,
                     onValueChange = { subject = it },
-                    label = { Text("Subject") },
+                    label = { Text("Subject", color = Color.Gray) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = MaterialTheme.colorScheme.primary,
                         focusedLabelColor = MaterialTheme.colorScheme.primary
-                    )
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+
                 )
-                
+
                 // Message Field
                 OutlinedTextField(
                     value = message,
                     onValueChange = { message = it },
-                    label = { Text("Your Message") },
+                    label = { Text("Your Message", color = Color.Gray) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(120.dp),
@@ -95,11 +116,12 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = MaterialTheme.colorScheme.primary,
                         focusedLabelColor = MaterialTheme.colorScheme.primary
-                    )
+                    ),
+                    shape = RoundedCornerShape(12.dp)
                 )
             }
         }
-        
+
         // Submit Button
         Button(
             onClick = {
@@ -119,45 +141,50 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(vertical = 8.dp)
             )
         }
-        
+
         // Success Message
         if (isSubmitted) {
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                ),
-                shape = RoundedCornerShape(12.dp)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(), // pura screen cover kare
+                contentAlignment = Alignment.Center// beech me card ko rakhe
             ) {
-                Row(
-                    modifier = Modifier.padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.Transparent
+                    ),
+                    shape = RoundedCornerShape(12.dp)
                 ) {
-                    Icon(
-                        Icons.Default.CheckCircle,
-                        contentDescription = "Success",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                    Text(
-                        text = "Thank you for contacting us!",
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Medium
-                    )
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.CheckCircle,
+                            contentDescription = "Success",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = "Thank you for contacting us!",
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
                 }
             }
         }
         
         // Divider
         HorizontalDivider(
-            modifier = Modifier.padding(vertical = 16.dp),
             color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
         )
         
         // Social Links Section
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
                 text = "Or reach out to me here:",

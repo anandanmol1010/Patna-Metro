@@ -17,6 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.app.mypatnametro.navigation.PatnaMetroNavigation
 import com.app.mypatnametro.ui.screens.LaunchScreen
 import com.app.mypatnametro.ui.screens.OnboardingScreen
+import com.app.mypatnametro.ui.screens.DisclaimerScreen
 import com.app.mypatnametro.ui.theme.MypatnametroTheme
 import com.app.mypatnametro.viewmodel.AppState
 import com.app.mypatnametro.viewmodel.MainViewModel
@@ -65,6 +66,14 @@ fun PatnaMetroApp(
                     onOnboardingComplete = {
                         viewModel.onOnboardingComplete()
                     }
+                )
+            }
+            AppState.DISCLAIMER -> {
+                DisclaimerScreen(
+                    onDismiss = {
+                        viewModel.onDisclaimerAccepted()
+                    },
+                    isFirstTime = !viewModel.isDisclaimerAccepted()
                 )
             }
             AppState.MAIN -> {

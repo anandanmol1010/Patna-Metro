@@ -38,7 +38,8 @@ fun ParkingLotsScreen(modifier: Modifier = Modifier) {
             leadingIcon = {
                 Icon(Icons.Default.Search, contentDescription = "Search")
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(top = 24.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = MaterialTheme.colorScheme.primary,
                 focusedLabelColor = MaterialTheme.colorScheme.primary

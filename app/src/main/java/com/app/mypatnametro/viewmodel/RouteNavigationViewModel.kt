@@ -2,6 +2,7 @@ package com.app.mypatnametro.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.app.mypatnametro.data.model.MetroNetwork
 import com.app.mypatnametro.data.model.MetroStation
 import com.app.mypatnametro.data.repository.MetroRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,22 +17,22 @@ class RouteNavigationViewModel @Inject constructor(
     private val metroRepository: MetroRepository
 ) : ViewModel() {
     
+    private val metroNetwork = MetroNetwork()
     
     private val _uiState = MutableStateFlow(RouteNavigationUiState())
     val uiState: StateFlow<RouteNavigationUiState> = _uiState.asStateFlow()
     
-    init {
-        loadStations()
-    }
+    // Station list matching iOS implementation
+    private val stations = listOf(
+        "Danapur Cantonment", "Saguna Mor", "RPS Mor", "Patliputra", "Rukanpura",
+        "Raja Bazar", "Patna Zoo", "Vikas Bhawan", "Vidyut Bhawan", "Patna Junction",
+        "CNLU", "Mithapur", "Ramkrishna Nagar", "Jaganpur", "Khemni Chak", "Akashvani",
+        "Gandhi Maidan", "PMCH", "Patna University", "Moin Ul Haq Stadium", "Rajendra Nagar",
+        "Malahi Pakri", "Bhoothnath", "Zero Mile", "New ISBT"
+    )
     
-    private fun loadStations() {
-        viewModelScope.launch {
-            metroRepository.getAllStations().collect { stations ->
-                _uiState.value = _uiState.value.copy(
-                    stations = stations.map { it.name }
-                )
-            }
-        }
+    init {
+        _uiState.value = _uiState.value.copy(stations = stations)
     }
     
     fun updateSource(source: String) {
@@ -55,14 +56,14 @@ class RouteNavigationViewModel @Inject constructor(
         if (currentState.source.isNotEmpty() && currentState.destination.isNotEmpty()) {
             _uiState.value = currentState.copy(isLoading = true)
             
-            viewModelScope.launch {
-                metroRepository.findRoute(currentState.source, currentState.destination).collect { route ->
-                    _uiState.value = _uiState.value.copy(
-                        route = route ?: emptyList(),
-                        isLoading = false
-                    )
-                }
-            }
+            // Use MetroNetwork's BFS algorithm like iOS implementation
+            val foundRoute = metroNetwork.findShortestPath(currentState.source, currentState.destination)
+            
+            _uiState.value = _uiState.value.copy(
+                route = foundRoute ?: listOf("No route found"),
+                showRouteResults = foundRoute != null,
+                isLoading = false
+            )
         }
     }
     

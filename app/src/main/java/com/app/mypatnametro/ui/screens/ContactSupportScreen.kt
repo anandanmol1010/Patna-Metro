@@ -23,7 +23,7 @@ fun ContactSupportScreen(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
-            .padding(top = 32.dp)
+            .padding(top = 48.dp)
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -47,7 +47,7 @@ fun ContactSupportScreen(modifier: Modifier = Modifier) {
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Name") },
+                    label = { Text("Name", color = Color.Gray) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true
                 )
@@ -55,7 +55,7 @@ fun ContactSupportScreen(modifier: Modifier = Modifier) {
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
-                    label = { Text("Email") },
+                    label = { Text("Email", color = Color.Gray) },
                     modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     singleLine = true
@@ -86,7 +86,7 @@ fun ContactSupportScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(150.dp),
-                    placeholder = { Text("Type your message here...") },
+                    placeholder = { Text("Type your message here...", color = Color.Gray) },
                     maxLines = 8
                 )
             }

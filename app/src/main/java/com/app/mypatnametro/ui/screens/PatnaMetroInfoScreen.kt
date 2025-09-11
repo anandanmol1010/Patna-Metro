@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.mypatnametro.R
@@ -30,9 +31,21 @@ fun PatnaMetroInfoScreen(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
+
+        Text(
+            modifier = Modifier.fillMaxWidth()
+                .padding(top = 20.dp),
+            text = "Metro Information",
+            style = MaterialTheme.typography.headlineMedium.copy(
+                textDecoration = TextDecoration.Underline
+            ),
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
+
         // About Patna Metro Section
         InfoSection(
             icon = Icons.Default.Info,
@@ -84,7 +97,7 @@ fun PatnaMetroInfoScreen(modifier: Modifier = Modifier) {
                     title = "Blue Line",
                     subtitle = "North-South",
                     isSelected = selectedLine == 1,
-                    color = Color.Blue,
+                    color = Color(0xFF235DE7),
                     onClick = { selectedLine = 1 },
                     modifier = Modifier.weight(1f)
                 )
@@ -100,7 +113,7 @@ fun PatnaMetroInfoScreen(modifier: Modifier = Modifier) {
         // Statistics Section
         Card(
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                containerColor = Color(0xFFeeeeee)
             )
         ) {
             Column(
@@ -163,6 +176,7 @@ private fun InfoSection(
         Text(
             text = content,
             style = MaterialTheme.typography.bodyLarge,
+//            fontWeight = FontWeight.Medium,
             color = MaterialTheme.colorScheme.onSurface,
             lineHeight = 24.sp
         )
@@ -221,7 +235,7 @@ private fun RedLineView() {
             contentDescription = "Red Line Map",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp),
+                .height(250.dp),
             contentScale = ContentScale.Fit
         )
         
@@ -245,7 +259,7 @@ private fun BlueLineView() {
             contentDescription = "Blue Line Map",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp),
+                .height(250.dp),
             contentScale = ContentScale.Fit
         )
         

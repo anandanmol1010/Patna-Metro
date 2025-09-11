@@ -15,28 +15,47 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
 @Composable
 fun AboutUsScreen(modifier: Modifier = Modifier) {
-    LazyColumn(
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-        contentPadding = PaddingValues(vertical = 20.dp)
+            .padding(20.dp),
+        contentAlignment = Alignment.Center
     ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            contentPadding = PaddingValues(vertical = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
         item {
             // Header Section
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.padding(top = 4.dp)
             ) {
+
+                Text(
+                    text = "About Us",
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        textDecoration = TextDecoration.Underline
+                    ),
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+
                 Icon(
                     Icons.Default.Train,
                     contentDescription = "Metro Icon",
@@ -48,13 +67,14 @@ fun AboutUsScreen(modifier: Modifier = Modifier) {
                     text = "Patna Metro",
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
+                    color = Color.Black
                 )
                 
                 Text(
                     text = "Your Smart Transit Companion",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray,
                     textAlign = TextAlign.Center
                 )
             }
@@ -128,7 +148,7 @@ fun AboutUsScreen(modifier: Modifier = Modifier) {
                     userScrollEnabled = false,
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.height(460.dp)
+                    modifier = Modifier.height(500.dp)
                 ) {
                     items(teamMembers) { member ->
                         TeamMemberCard(member)
@@ -210,7 +230,7 @@ fun AboutUsScreen(modifier: Modifier = Modifier) {
                 Text(
                     text = "Have feedback or suggestions? We'd love to hear from you!",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    color = Color.Gray,
                     textAlign = TextAlign.Center
                 )
                 
@@ -225,6 +245,7 @@ fun AboutUsScreen(modifier: Modifier = Modifier) {
                     Text("Contact Us")
                 }
             }
+        }
         }
     }
 }
@@ -256,8 +277,9 @@ private fun InfoSection(
         
         Text(
             text = content,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Normal,
+            color = Color.Gray,
             lineHeight = 24.sp
         )
     }
@@ -281,8 +303,9 @@ private fun FeatureRow(
         
         Text(
             text = text,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Normal,
+            color = Color.Gray
         )
     }
 }
@@ -291,7 +314,7 @@ private fun FeatureRow(
 private fun TeamMemberCard(member: TeamMember) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = Color(0xFFeeeeee)
         ),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -324,17 +347,19 @@ private fun TeamMemberCard(member: TeamMember) {
             
             Text(
                 text = member.role,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                textAlign = TextAlign.Center
             )
             
             Text(
                 text = member.description,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                color = Color.Gray,
                 textAlign = TextAlign.Center,
-                maxLines = 3
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -348,7 +373,7 @@ private fun FeatureCard(
 ) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = Color(0xFFeeeeee)
         ),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -377,8 +402,9 @@ private fun FeatureCard(
                 Text(
                     text = description,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                    maxLines = 2
+                    color = Color.Gray,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
@@ -393,7 +419,7 @@ data class TeamMember(
 
 private val teamMembers = listOf(
     TeamMember(
-        "Shashwat Singh",
+        "Mob Developer",
         "Lead Developer",
         "Full-stack developer passionate about public transportation technology"
     ),
@@ -404,7 +430,7 @@ private val teamMembers = listOf(
     ),
     TeamMember(
         "Backend Developer",
-        "System Architect",
+        "Architect",
         "Specialist in real-time data systems and API development"
     ),
     TeamMember(

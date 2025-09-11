@@ -11,31 +11,47 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun DisclaimerScreen(
     onDismiss: () -> Unit = {},
+    isFirstTime: Boolean = false,
     modifier: Modifier = Modifier
 ) {
-    var hasAccepted by remember { mutableStateOf(false) }
+    var hasAccepted by remember { mutableStateOf(!isFirstTime) }
     
     Column(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(top = 20.dp)
+            .padding(start = 20.dp)
+            .padding(end = 20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         // Header Section
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.padding(top = 20.dp)
+            modifier = Modifier.padding(top = 12.dp)
         ) {
+            Text(
+                text = "Disclaimer",
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    textDecoration = TextDecoration.Underline
+                ),
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+
             Icon(
                 Icons.Default.Warning,
                 contentDescription = "Warning",
@@ -52,8 +68,9 @@ fun DisclaimerScreen(
             
             Text(
                 text = "Please read this carefully before using our app",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = Color.Gray,
                 textAlign = TextAlign.Center
             )
         }
@@ -109,14 +126,15 @@ fun DisclaimerScreen(
                 Text(
                     text = "Official Sources",
                     style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Bold
                 )
             }
             
             Text(
                 text = "For official and verified information, please refer to:",
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                fontWeight = FontWeight.Medium,
+                color = Color.Gray
             )
             
             Column(
@@ -145,7 +163,7 @@ fun DisclaimerScreen(
                 Text(
                     text = "Terms of Use",
                     style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Bold
                 )
             }
             
@@ -164,7 +182,8 @@ fun DisclaimerScreen(
                     Text(
                         text = "• $term",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        fontWeight = FontWeight.Medium,
+                        color = Color.Gray
                     )
                 }
             }
@@ -187,7 +206,8 @@ fun DisclaimerScreen(
                 )
                 
                 Text(
-                    text = "I have read and understand the disclaimer",
+                    text = if (isFirstTime) "I have read and understand the disclaimer" else "I have already read and understand the disclaimer",
+                    fontWeight = FontWeight.Medium,
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
@@ -212,13 +232,15 @@ fun DisclaimerScreen(
                 )
             }
             
-            Text(
-                text = "Thank you for understanding and using our app responsibly",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
+            if (hasAccepted) {
+                Text(
+                    text = "Thank you for understanding and using our app responsibly",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.Gray,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
         
         Spacer(modifier = Modifier.height(30.dp))
@@ -233,7 +255,7 @@ private fun DisclaimerCard(
 ) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = Color(0xFFeeeeee)
         ),
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
@@ -262,7 +284,7 @@ private fun DisclaimerCard(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -270,8 +292,10 @@ private fun DisclaimerCard(
             Text(
                 text = content,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                lineHeight = MaterialTheme.typography.bodyMedium.lineHeight
+                fontWeight = FontWeight.Medium,
+                color = Color.Gray,
+//                maxLines = 2,
+//                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -296,7 +320,8 @@ private fun OfficialSourceRow(
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+            fontWeight = FontWeight.Medium,
+            color = Color.Gray
         )
     }
 }

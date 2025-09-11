@@ -126,10 +126,24 @@ fun PatnaMetroNavigation() {
                 ContactUsScreen()
             }
             composable("disclaimer") {
-                DisclaimerScreen()
+                DisclaimerScreen(
+                    onDismiss = {
+                        navController.popBackStack()
+                    },
+                    isFirstTime = false
+                )
             }
             composable("rate_us") {
-                RateUsScreen()
+                RateUsScreen(
+                    onDismiss = {
+                        navController.navigate("home") {
+                            popUpTo("home") {
+                                inclusive = false
+                            }
+                            launchSingleTop = true
+                        }
+                    }
+                )
             }
             composable("ticket") {
                 TicketScreen()

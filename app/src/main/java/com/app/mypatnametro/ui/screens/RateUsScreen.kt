@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.ui.text.style.TextDecoration
 
 @Composable
 fun RateUsScreen(
@@ -43,16 +44,16 @@ fun RateUsScreen(
     
     val context = LocalContext.current
     
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 20.dp, vertical = 20.dp),
-        verticalArrangement = Arrangement.spacedBy(30.dp)
-    ) {
-        if (showThankYou) {
-            ThankYouView(onDismiss = onDismiss)
-        } else {
+    if (showThankYou) {
+        ThankYouView(onDismiss = onDismiss)
+    } else {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 20.dp, vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(30.dp)
+        ) {
             RatingView(
                 selectedRating = selectedRating,
                 onRatingChange = { selectedRating = it },
@@ -95,8 +96,19 @@ private fun RatingView(
     // Header Section
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.padding(top = 24.dp)
     ) {
+        Text(
+            text = "Rate Our App",
+            style = MaterialTheme.typography.headlineMedium.copy(
+                textDecoration = TextDecoration.Underline
+            ),
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
+
+
         Box(
             modifier = Modifier
                 .size(100.dp)
@@ -122,7 +134,7 @@ private fun RatingView(
         Text(
             text = "Your feedback helps us improve the Patna Metro app and serve you better",
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+            color = Color.Gray,
             textAlign = TextAlign.Center,
             lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
         )
@@ -136,11 +148,14 @@ private fun RatingView(
         Text(
             text = "Rate your experience",
             style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Center
         )
         
         Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             repeat(5) { index ->
                 val starIndex = index + 1
@@ -158,8 +173,9 @@ private fun RatingView(
                     if (isSelected) Icons.Default.Star else Icons.Default.StarBorder,
                     contentDescription = "Star $starIndex",
                     modifier = Modifier
-                        .size(32.dp)
+                        .size(40.dp)
                         .scale(scale)
+                        .padding(horizontal = 4.dp)
                         .clickable { onRatingChange(starIndex) },
                     tint = if (isSelected) Color(0xFFFFD700) else MaterialTheme.colorScheme.outline
                 )
@@ -200,7 +216,7 @@ private fun RatingView(
             OutlinedTextField(
                 value = feedbackText,
                 onValueChange = onFeedbackChange,
-                placeholder = { Text("Share your thoughts, suggestions, or report any issues...") },
+                placeholder = { Text("Share your thoughts, suggestions, or report any issues...", color = Color.Gray) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(100.dp),
@@ -238,7 +254,7 @@ private fun RatingView(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.height(120.dp)
+                modifier = Modifier.height(160.dp)
             ) {
                 items(quickFeedbackOptions) { option ->
                     QuickFeedbackButton(
@@ -302,71 +318,72 @@ private fun RatingView(
 @Composable
 private fun ThankYouView(onDismiss: () -> Unit) {
     Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(30.dp),
-        modifier = Modifier.fillMaxWidth()
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.weight(1f))
+        val scale by animateFloatAsState(
+            targetValue = 1.0f,
+            animationSpec = spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessMedium
+            ),
+            label = "thank_you_scale"
+        )
         
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+        // Icon
+        Box(
+            modifier = Modifier
+                .size(120.dp)
+                .scale(scale)
+                .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)),
+            contentAlignment = Alignment.Center
         ) {
-            val scale by animateFloatAsState(
-                targetValue = 1.0f,
-                animationSpec = spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessMedium
-                ),
-                label = "thank_you_scale"
+            Icon(
+                Icons.Default.CheckCircle,
+                contentDescription = "Success",
+                modifier = Modifier.size(60.dp),
+                tint = MaterialTheme.colorScheme.primary
             )
-            
-            Box(
-                modifier = Modifier
-                    .size(120.dp)
-                    .scale(scale)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    Icons.Default.CheckCircle,
-                    contentDescription = "Success",
-                    modifier = Modifier.size(60.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-            }
-            
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Text(
-                    text = "Thank You!",
-                    style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                
-                Text(
-                    text = "Your feedback has been submitted successfully",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Center
-                )
-                
-                Text(
-                    text = "We appreciate your time and will use your feedback to make the Patna Metro app even better.",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                    textAlign = TextAlign.Center,
-                    lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
-                )
-            }
         }
         
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(20.dp))
         
+        // Thank You Text
+        Text(
+            text = "Thank You!",
+            style = MaterialTheme.typography.headlineLarge,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary
+        )
+        
+        Spacer(modifier = Modifier.height(12.dp))
+        
+        // Success Message
+        Text(
+            text = "Your feedback has been submitted successfully",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
+        )
+        
+        Spacer(modifier = Modifier.height(12.dp))
+        
+        // Description
+        Text(
+            text = "We appreciate your time and will use your feedback to make the Patna Metro app even better.",
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
+        )
+        
+        Spacer(modifier = Modifier.height(30.dp))
+        
+        // Button
         Button(
             onClick = onDismiss,
             modifier = Modifier.fillMaxWidth(),
@@ -384,8 +401,6 @@ private fun ThankYouView(onDismiss: () -> Unit) {
                 modifier = Modifier.padding(vertical = 8.dp)
             )
         }
-        
-        Spacer(modifier = Modifier.height(50.dp))
     }
 }
 

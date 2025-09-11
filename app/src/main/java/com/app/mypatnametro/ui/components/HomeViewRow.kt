@@ -1,8 +1,10 @@
 package com.app.mypatnametro.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -30,7 +33,8 @@ fun HomeViewRow(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .clickable {
+            .clickable
+            {
                 // Navigate based on moduleID
                 when (item.moduleID) {
                     0 -> navController.navigate("route_planning")
@@ -41,8 +45,11 @@ fun HomeViewRow(
                 }
             },
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
+            containerColor = Color.White
         ),
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(2.dp, Color(0xFFcccccc)
+    )
 //        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
@@ -69,37 +76,6 @@ fun HomeViewRow(
             }
             
             Spacer(modifier = Modifier.width(16.dp))
-
-            // Image with drawable resource
-//            Box(
-//                modifier = Modifier
-//                    .size(width = 120.dp, height = 80.dp)
-//                    .clip(RoundedCornerShape(10.dp)),
-//                contentAlignment = Alignment.Center
-//            ) {
-//                if (item.imageUrl == "routeimg") {
-//                    Icon(
-//                        painter = painterResource(id = R.drawable.route_img),
-//                        contentDescription = item.mainLine,
-//                        modifier = Modifier.size(48.dp),
-//                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-//                    )
-//                } else {
-//                    Icon(
-//                        painter = painterResource(
-//                            id = when (item.imageUrl) {
-//                                "mapimg" -> R.drawable.map_img
-//                                "ticketimg" -> R.drawable.ticket_img
-//                                "queryimg" -> R.drawable.query_img
-//                                else -> R.drawable.ic_information
-//                            }
-//                        ),
-//                        contentDescription = item.mainLine,
-//                        modifier = Modifier.size(48.dp),
-//                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-//                    )
-//                }
-//            }
 
             Box(
                 modifier = Modifier
