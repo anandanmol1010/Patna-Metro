@@ -1,6 +1,6 @@
-# Patna Metro Android App
+# My Patna Metro Android App
 
-A modern Android application for Patna Metro transit system built with Kotlin and Jetpack Compose.
+A modern Android application for My Patna Metro transit system built with Kotlin and Jetpack Compose.
 
 ## 🚇 Features
 
@@ -14,7 +14,7 @@ A modern Android application for Patna Metro transit system built with Kotlin an
 - **Launch Screen**: Animated splash screen with Lottie support
 
 ### Technical Features
-- Material3 Design System with custom Patna Metro branding
+- Material3 Design System with custom My Patna Metro branding
 - Bottom Navigation with 4 main tabs (Home, Top Up, Support, Account)
 - MVVM Architecture with ViewModels and StateFlow
 - Jetpack Compose UI with modern Android patterns
@@ -64,7 +64,7 @@ app/src/main/java/com/app/mypatnametro/
 ## 🎨 Design System
 
 ### Colors
-- **Primary**: Patna Metro brand blue (#1E88E5)
+- **Primary**: My Patna Metro brand blue (#1E88E5)
 - **Secondary**: Complementary orange (#FF9800)
 - **Metro Lines**: Red (#F44336) and Blue (#2196F3)
 - **Surface**: Material3 adaptive colors
@@ -185,7 +185,7 @@ implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 | Home Sub Screen | `HomeSubScreen.kt` | Complete |
 | Rate Us | `RateUsScreen.kt` | Complete |
 | Ticket Booking | `TicketScreen.kt` | Complete |
-| Patna Metro Info | `PatnaMetroInfoScreen.kt` | Complete |
+| My Patna Metro Info | `PatnaMetroInfoScreen.kt` | Complete |
 | Onboarding | `OnboardingScreen.kt` | Complete |
 | Launch Screen | `LaunchScreen.kt` | Complete |
 | **Components** | **Implementation** | **Status** |
@@ -213,7 +213,7 @@ implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 - BFS route-finding algorithm for optimal paths
 - Comprehensive metro station data and network
 - Modern UI/UX design patterns and layouts
-- Consistent color scheme and Patna Metro branding
+- Consistent color scheme and My Patna Metro branding
 - Interactive gestures and smooth animations
 - Form validation and intuitive user interactions
 - Full-featured metro transit application
@@ -297,7 +297,7 @@ keyPassword=your_key_password
 
 ## 📄 License
 
-This project is a native Android application for Patna Metro. Please ensure proper licensing compliance for production use.
+This project is a native Android application for My Patna Metro. Please ensure proper licensing compliance for production use.
 
 ## 🤝 Contributing
 

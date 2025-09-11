@@ -446,7 +446,7 @@ private fun TicketCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "PATNA METRO",
+                        text = "MY PATNA METRO",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = Color.White

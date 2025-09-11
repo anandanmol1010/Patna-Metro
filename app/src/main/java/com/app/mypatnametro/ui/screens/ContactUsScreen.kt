@@ -20,6 +20,8 @@ import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import android.widget.Toast
+import java.util.regex.Pattern
 
 
 @Composable
@@ -31,6 +33,20 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
     var isSubmitted by remember { mutableStateOf(false) }
     
     val context = LocalContext.current
+    
+    // Email validation function
+    fun isValidEmail(email: String): Boolean {
+        val emailPattern = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+            "\\@" +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+            "(" +
+            "\\." +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+            ")+"
+        )
+        return emailPattern.matcher(email).matches()
+    }
     
     Column(
         modifier = modifier
@@ -125,8 +141,12 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
         // Submit Button
         Button(
             onClick = {
-                isSubmitted = true
-                // TODO: Handle form submission
+                if (email.isBlank() || !isValidEmail(email)) {
+                    Toast.makeText(context, "Email is invalid", Toast.LENGTH_SHORT).show()
+                } else {
+                    isSubmitted = true
+                    // TODO: Handle form submission
+                }
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(

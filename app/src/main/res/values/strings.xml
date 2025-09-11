@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Patna Metro</string>
+    <string name="app_name">My Patna Metro</string>
     
     <!-- Navigation -->
     <string name="nav_home">Home</string>
@@ -32,7 +32,7 @@
     <string name="get_started">Get Started</string>
     
     <!-- Onboarding -->
-    <string name="onboarding_title_1">Welcome to Patna Metro</string>
+    <string name="onboarding_title_1">Welcome to My Patna Metro</string>
     <string name="onboarding_desc_1">Your smart companion for metro travel in Patna</string>
     <string name="onboarding_title_2">Plan Your Journey</string>
     <string name="onboarding_desc_2">Find the best routes and get real-time updates</string>
@@ -44,7 +44,7 @@
     <string name="error_generic">Something went wrong. Please try again.</string>
     
     <!-- Content Descriptions -->
-    <string name="cd_metro_logo">Patna Metro Logo</string>
+    <string name="cd_metro_logo">My Patna Metro Logo</string>
     <string name="cd_route_icon">Route Planning Icon</string>
     <string name="cd_map_icon">Map Icon</string>
     <string name="cd_parking_icon">Parking Icon</string>

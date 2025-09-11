@@ -64,7 +64,7 @@ fun AboutUsScreen(modifier: Modifier = Modifier) {
                 )
                 
                 Text(
-                    text = "Patna Metro",
+                    text = "My Patna Metro",
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black

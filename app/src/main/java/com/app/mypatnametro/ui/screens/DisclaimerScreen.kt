@@ -82,7 +82,7 @@ fun DisclaimerScreen(
             DisclaimerCard(
                 icon = Icons.Default.Business,
                 title = "Unofficial Application",
-                content = "This application is NOT an official app of Patna Metro Rail Corporation (PMRC). We are an independent development team creating this app to help commuters with metro information and services."
+                content = "This application is NOT an official app of My Patna Metro Rail Corporation (PMRC). We are an independent development team creating this app to help commuters with metro information and services."
             )
             
             DisclaimerCard(

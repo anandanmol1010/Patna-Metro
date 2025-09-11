@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.app.mypatnametro.navigation.PatnaMetroNavigation
@@ -29,10 +30,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         
-        // Hide status bar and make app full screen
+        // Initially hide status bar and navigation bar for launch screen
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
-        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
+        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.navigationBars())
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         
         setContent {
@@ -48,6 +49,26 @@ fun PatnaMetroApp(
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val appState by viewModel.appState.collectAsStateWithLifecycle()
+    
+    val context = LocalContext.current
+    
+    // Show navigation buttons only when not in launch screen
+    LaunchedEffect(appState) {
+        val activity = context as ComponentActivity
+        val windowInsetsController = WindowCompat.getInsetsController(activity.window, activity.window.decorView)
+        
+        when (appState) {
+            AppState.LAUNCH -> {
+                // Hide navigation buttons during launch screen
+                windowInsetsController.hide(WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.navigationBars())
+            }
+            else -> {
+                // Show navigation buttons for all other screens
+                windowInsetsController.show(WindowInsetsCompat.Type.navigationBars())
+                windowInsetsController.hide(WindowInsetsCompat.Type.statusBars()) // Keep status bar hidden
+            }
+        }
+    }
     
     Surface(
         modifier = Modifier.fillMaxSize(),

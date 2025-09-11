@@ -46,11 +46,11 @@ fun PatnaMetroInfoScreen(modifier: Modifier = Modifier) {
             textAlign = TextAlign.Center
         )
 
-        // About Patna Metro Section
+        // About My Patna Metro Section
         InfoSection(
             icon = Icons.Default.Info,
-            title = "About Patna Metro",
-            content = "Patna Metro is a rapid transit system under construction by Patna Metro Rail Corporation Limited (PMRCL). The metro is expected to be operational by August 15, 2025, in time for Independence Day. Phase 1 covers approximately 31 km across two corridors with 24-26 planned stations. The project is funded jointly by State Government (20%), Central Government (20%), and 60% loan from Japan International Cooperation Agency (JICA)."
+            title = "About My Patna Metro",
+            content = "My Patna Metro is a rapid transit system under construction by My Patna Metro Rail Corporation Limited (PMRCL). The metro is expected to be operational by August 15, 2025, in time for Independence Day. Phase 1 covers approximately 31 km across two corridors with 24-26 planned stations. The project is funded jointly by State Government (20%), Central Government (20%), and 60% loan from Japan International Cooperation Agency (JICA)."
         )
         
         // Current Status Section

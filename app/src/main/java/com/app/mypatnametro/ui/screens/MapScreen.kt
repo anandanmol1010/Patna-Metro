@@ -32,7 +32,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
         // Map image with gesture handling
         Image(
             painter = painterResource(id = com.app.mypatnametro.R.drawable.map),
-            contentDescription = "Patna Metro Map",
+            contentDescription = "My Patna Metro Map",
             modifier = Modifier
                 .fillMaxSize()
                 .pointerInput(Unit) {

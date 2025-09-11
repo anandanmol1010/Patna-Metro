@@ -64,9 +64,9 @@ fun HomeScreen(navController: NavController) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = "Welcome To Patna Metro",
+                                text = "Welcome To My Patna Metro",
                                 color = Color.White,
-                                style = MaterialTheme.typography.headlineMedium,
+                                style = MaterialTheme.typography.headlineSmall,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(

@@ -2,16 +2,16 @@ package com.app.mypatnametro.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Patna Metro Brand Colors
+// My Patna Metro Brand Colors
 val PatnaMetroPrimary = Color(0xFF1EACFA) // Primary blue
 val PatnaMetroSecondary = Color(0xFF1097F0) // Launch screen blue
 val PatnaMetroAccent = Color(0xFF1EACFA)
 
 // Background Colors
-val BgColorLight = Color(0xFFF5F5F5) // Light background
-val BgColorDark = Color(0xFF121212) // Dark background
+val BgColorLight = Color(0xFFFFFFFF) // Light background
+val BgColorDark = Color(0xFF000000) // Dark background
 val CardColorLight = Color(0xFFFFFFFF) // Card background light
-val CardColorDark = Color(0xFF1E1E1E) // Card background dark
+val CardColorDark = Color(0xFF000000) // Card background dark
 
 // Metro Line Colors
 val RedLineColor = Color(0xFFE53E3E) // Red metro line

@@ -28,7 +28,7 @@ fun OnboardingScreen(
 ) {
     val onboardingPages = listOf(
         OnboardingPage(
-            title = "Welcome to Patna Metro",
+            title = "Welcome to My Patna Metro",
             description = "Your smart companion for navigating Patna's metro system with ease and convenience.",
             emoji = "🚇"
         ),

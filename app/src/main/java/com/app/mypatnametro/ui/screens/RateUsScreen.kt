@@ -132,7 +132,7 @@ private fun RatingView(
         )
         
         Text(
-            text = "Your feedback helps us improve the Patna Metro app and serve you better",
+            text = "Your feedback helps us improve the My Patna Metro app and serve you better",
             style = MaterialTheme.typography.bodyLarge,
             color = Color.Gray,
             textAlign = TextAlign.Center,
@@ -374,7 +374,7 @@ private fun ThankYouView(onDismiss: () -> Unit) {
         
         // Description
         Text(
-            text = "We appreciate your time and will use your feedback to make the Patna Metro app even better.",
+            text = "We appreciate your time and will use your feedback to make the My Patna Metro app even better.",
             style = MaterialTheme.typography.bodyLarge,
             color = Color.Gray,
             textAlign = TextAlign.Center,
