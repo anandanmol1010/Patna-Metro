@@ -27,7 +27,10 @@ import com.app.mypatnametro.ui.theme.*
 import kotlinx.coroutines.delay
 
 @Composable
-fun MetroCardView(modifier: Modifier = Modifier) {
+fun MetroCardView(
+    cardNumber: String = "0000000000",
+    modifier: Modifier = Modifier
+) {
     var showToast by remember { mutableStateOf(false) }
     val clipboardManager = LocalClipboardManager.current
     
@@ -38,17 +41,21 @@ fun MetroCardView(modifier: Modifier = Modifier) {
             showToast = false
         }
     }
-    val cardNumber = "4269 4794 2022"
+    
+    // Format card number for display (add spaces every 4 digits)
+    val formattedCardNumber = cardNumber.chunked(4).joinToString(" ")
     val issuedDate = "11/2022"
     
-    // Theme gradient
+    // Theme gradient - matching iOS gradient exactly
     val themeGradient = Brush.linearGradient(
         colors = listOf(
-            GradientStart,    // Red
-            GradientOrange,   // Orange
-            GradientYellow,   // Yellow
-            Color(0xFF1eacfa)      // Blue
-        )
+            GradientStart,        // Red
+            GradientOrange, // Orange
+            GradientYellow,     // Yellow
+            GradientEnd // Blue (#1eacfa)
+        ),
+        start = androidx.compose.ui.geometry.Offset(0f, 0f),
+        end = androidx.compose.ui.geometry.Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
     )
     
     Box(modifier = modifier) {
@@ -70,15 +77,15 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                         .padding(20.dp),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    // Top section with ONE branding
+                    // Top section with MPM branding
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.Top
                     ) {
-                        // Rotated ONE text
+                        // Rotated MPM text
                         Text(
-                            text = "ONE",
+                            text = "MPM",
                             fontSize = 40.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White,
@@ -94,22 +101,24 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Text(
-                                text = "ONE DELHI. ONE RIDE.",
-                                style = MaterialTheme.typography.titleLarge,
-                                color = Color.White,
-                                textAlign = TextAlign.End
-                            )
-                            Text(
-                                text = "वन | एक दिल्ली, एक सवारी",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Color.White.copy(alpha = 0.9f),
-                                textAlign = TextAlign.End
-                            )
-                            Text(
-                                text = "DELHI METRO",
-                                style = MaterialTheme.typography.bodySmall,
+                                text = "PATNA METRO",
+                                style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White.copy(alpha = 0.95f),
+                                color = Color.Black,
+                                textAlign = TextAlign.End
+                            )
+                            Text(
+                                text = "एक कदम विकास की ओर",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black.copy(alpha = 0.9f),
+                                textAlign = TextAlign.End
+                            )
+                            Text(
+                                text = "Bihar Urban Development",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black.copy(alpha = 0.95f),
                                 textAlign = TextAlign.End
                             )
                         }
@@ -128,7 +137,7 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                             Text(
                                 text = "CARD NO.",
                                 style = MaterialTheme.typography.labelLarge,
-                                color = Color.White.copy(alpha = 0.7f)
+                                color = Color.Black
                             )
                             
                             Row(
@@ -136,16 +145,22 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
                                 Text(
-                                    text = cardNumber,
-                                    style = MaterialTheme.typography.titleLarge,
+                                    text = formattedCardNumber,
+                                    style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.White
+                                    color = Color.Black,
+                                    modifier = Modifier
+                                        .background(
+                                            Color.White.copy(alpha = 0.3f),
+                                            RoundedCornerShape(32.dp)
+                                        )
+                                        .padding(horizontal = 8.dp, vertical = 4.dp)
                                 )
                                 
                                 // Copy button
                                 IconButton(
                                     onClick = {
-                                        clipboardManager.setText(AnnotatedString(cardNumber))
+                                        clipboardManager.setText(AnnotatedString(formattedCardNumber))
                                         showToast = true
                                         // Auto-hide toast after delay
                                         // Use LaunchedEffect for coroutine in Composable context
@@ -176,12 +191,19 @@ fun MetroCardView(modifier: Modifier = Modifier) {
                             Text(
                                 text = "ISSUED",
                                 style = MaterialTheme.typography.labelLarge,
-                                color = Color.White.copy(alpha = 0.7f)
+                                color = Color.Black
                             )
                             Text(
                                 text = issuedDate,
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.White
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                modifier = Modifier
+                                    .background(
+                                        Color.White.copy(alpha = 0.3f),
+                                        RoundedCornerShape(32.dp)
+                                    )
+                                    .padding(horizontal = 8.dp, vertical = 4.dp)
                             )
                         }
                     }

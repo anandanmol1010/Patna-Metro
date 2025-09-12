@@ -31,6 +31,7 @@ import com.app.mypatnametro.ui.screens.DisclaimerScreen
 import com.app.mypatnametro.ui.screens.RateUsScreen
 import com.app.mypatnametro.ui.screens.TicketScreen
 import com.app.mypatnametro.ui.screens.PatnaMetroInfoScreen
+import com.app.mypatnametro.ui.screens.UserProfileScreen
 import com.app.mypatnametro.ui.components.ComingSoonView
 
 
@@ -100,7 +101,11 @@ fun PatnaMetroNavigation() {
                 ContactSupportScreen()
             }
             composable(BottomNavItem.Account.route) {
-                AccountScreen()
+                AccountScreen(
+                    onNavigateToProfile = {
+                        navController.navigate("user_profile")
+                    }
+                )
             }
             
             // Additional screens from HomeScreen navigation
@@ -156,6 +161,13 @@ fun PatnaMetroNavigation() {
             }
             composable("coming_soon") {
                 ComingSoonView()
+            }
+            composable("user_profile") {
+                UserProfileScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
             }
         }
     }

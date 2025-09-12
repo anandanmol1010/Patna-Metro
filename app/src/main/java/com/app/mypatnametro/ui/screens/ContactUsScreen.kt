@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import android.widget.Toast
 import java.util.regex.Pattern
+import com.app.mypatnametro.ui.components.BottomBarView
 
 
 @Composable
@@ -52,8 +53,10 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+            .padding(top = 16.dp)
+            .padding(start = 16.dp)
+            .padding(end = 16.dp)
+//        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
 
         Text(
@@ -67,6 +70,8 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
+
+        Spacer(modifier = Modifier.height(24.dp))
         // Form Section
         Card(
             colors = CardDefaults.cardColors(
@@ -138,6 +143,8 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
             }
         }
 
+        Spacer(modifier = Modifier.height(24.dp))
+
         // Submit Button
         Button(
             onClick = {
@@ -161,6 +168,7 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(vertical = 8.dp)
             )
         }
+        Spacer(modifier = Modifier.height(24.dp))
 
         // Success Message
         if (isSubmitted) {
@@ -195,67 +203,19 @@ fun ContactUsScreen(modifier: Modifier = Modifier) {
                 }
             }
         }
+        Spacer(modifier = Modifier.height(24.dp))
+
         
         // Divider
         HorizontalDivider(
             color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
         )
-        
-        // Social Links Section
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            Text(
-                text = "Or reach out to me here:",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-            )
-            
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(24.dp)
-            ) {
-                // Instagram Link
-                OutlinedButton(
-                    onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/shashwatt.singh"))
-                        context.startActivity(intent)
-                    },
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = MaterialTheme.colorScheme.primary
-                    )
-                ) {
-                    Icon(
-                        Icons.Default.Camera,
-                        contentDescription = "Instagram",
-                        modifier = Modifier.size(18.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Instagram")
-                }
-                
-                // Website Link
-                OutlinedButton(
-                    onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://shashwatt.in"))
-                        context.startActivity(intent)
-                    },
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = MaterialTheme.colorScheme.primary
-                    )
-                ) {
-                    Icon(
-                        Icons.Default.Language,
-                        contentDescription = "Website",
-                        modifier = Modifier.size(18.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("shashwatt.in")
-                }
-            }
-        }
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Bottom Bar with social links
+        BottomBarView()
         
         // Bottom Spacing
-        Spacer(modifier = Modifier.height(40.dp))
+//        Spacer(modifier = Modifier.height(40.dp))
     }
 }
